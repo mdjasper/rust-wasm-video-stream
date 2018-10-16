@@ -1,0 +1,18 @@
+[package]
+name = "wasm-bindgen-lib"
+version = "0.1.0"
+authors = ["The wasm-bindgen Developers"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+js-sys = { path = "../../crates/js-sys" }
+wasm-bindgen = { path = "../.." }
+console_error_panic_hook = "0.1.5"
+
+[dependencies.web-sys]
+path = "../../crates/web-sys"
+features = [
+
+]
