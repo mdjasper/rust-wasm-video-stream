@@ -1,1 +1,6 @@
 node_modules
+package-lock.json
+wasm_bindgen_lib.js
+wasm_bindgen_lib_bg.js
+wasm_bindgen_lib_bg.wasm
+target
