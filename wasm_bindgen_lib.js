@@ -38,11 +38,11 @@ function globalArgumentPtr() {
 * @param {Int32Array} arg0
 * @returns {Int32Array}
 */
-export function main(arg0) {
+export function calculate(arg0) {
     const [ptr0, len0] = passArray32ToWasm(arg0);
     const retptr = globalArgumentPtr();
     try {
-        wasm.main(retptr, ptr0, len0);
+        wasm.calculate(retptr, ptr0, len0);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -59,8 +59,6 @@ export function main(arg0) {
 
 }
 
-const __wbg_error_cc95a3d302735ca3_target = console.error;
-
 const lTextDecoder = typeof TextDecoder === 'undefined' ? require('util').TextDecoder : TextDecoder;
 
 let cachedTextDecoder = new lTextDecoder('utf-8');
@@ -75,15 +73,6 @@ function getUint8Memory() {
 
 function getStringFromWasm(ptr, len) {
     return cachedTextDecoder.decode(getUint8Memory().subarray(ptr, ptr + len));
-}
-
-export function __wbg_error_cc95a3d302735ca3(arg0, arg1) {
-    let varg0 = getStringFromWasm(arg0, arg1);
-
-    varg0 = varg0.slice();
-    wasm.__wbindgen_free(arg0, arg1 * 1);
-
-    __wbg_error_cc95a3d302735ca3_target(varg0);
 }
 
 export function __wbindgen_throw(ptr, len) {

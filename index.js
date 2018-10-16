@@ -29,8 +29,7 @@ const app = lib => {
     const data = tempContext.getImageData(0,0,canvas.width,canvas.height).data
     console.log("from js", data.length)
     // pass rgba data to webassembly function
-    lib.calculate(data);
-    const newData = lib.get();
+    const newData = lib.calculate(data);
     //create new Image and draw it to a canvas
     const newImageData = new ImageData(Uint8ClampedArray.from(newData), width, height);
     context.putImageData(newImageData, 0, 0);
