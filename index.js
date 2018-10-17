@@ -30,9 +30,9 @@ const app = lib => {
     console.log("from js", data.length)
     // pass rgba data to webassembly function
     lib.calculate(data);
-    const newData = lib.get();
+    // const newData = lib.get();
     //create new Image and draw it to a canvas
-    const newImageData = new ImageData(Uint8ClampedArray.from(newData), width, height);
+    const newImageData = new ImageData(Uint8ClampedArray.from(data), width, height);
     context.putImageData(newImageData, 0, 0);
 
     window.requestAnimationFrame(animationFrame);

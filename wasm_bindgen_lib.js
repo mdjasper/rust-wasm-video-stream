@@ -22,37 +22,17 @@ function getInt32Memory() {
     }
     return cachegetInt32Memory;
 }
-
-function getArrayI32FromWasm(ptr, len) {
-    return getInt32Memory().subarray(ptr / 4, ptr / 4 + len);
-}
-
-let cachedGlobalArgumentPtr = null;
-function globalArgumentPtr() {
-    if (cachedGlobalArgumentPtr === null) {
-        cachedGlobalArgumentPtr = wasm.__wbindgen_global_argument_ptr();
-    }
-    return cachedGlobalArgumentPtr;
-}
 /**
 * @param {Int32Array} arg0
-* @returns {Int32Array}
+* @returns {void}
 */
 export function calculate(arg0) {
     const [ptr0, len0] = passArray32ToWasm(arg0);
-    const retptr = globalArgumentPtr();
     try {
-        wasm.calculate(retptr, ptr0, len0);
-        const mem = getUint32Memory();
-        const rustptr = mem[retptr / 4];
-        const rustlen = mem[retptr / 4 + 1];
-
-        const realRet = getArrayI32FromWasm(rustptr, rustlen).slice();
-        wasm.__wbindgen_free(rustptr, rustlen * 4);
-        return realRet;
-
+        return wasm.calculate(ptr0, len0);
 
     } finally {
+        arg0.set(getInt32Memory().subarray(ptr0 / 4, ptr0 / 4 + len0));
         wasm.__wbindgen_free(ptr0, len0 * 4);
 
     }
