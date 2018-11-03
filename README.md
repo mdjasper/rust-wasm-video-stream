@@ -4,7 +4,7 @@ This is a personal learning side project investigating rust and wasm. It reads
 a video stream from a browser, modifies each frame by plucking out a certain
 color, then sends the stream to a video element in the DOM.
 
-![black and white video stream with a blue object visible][screenshot.jpg?raw=true]
+![black-and-white video stream with a blue object visible](screenshot.jpg)
 
 # build
 
