@@ -23,16 +23,17 @@ const app = lib => {
     video: true,
   };
 
+  let data, newImageData;
   const animationFrame = () => {
     // put stream on in-memory canvas and get rgba data out
     tempContext.drawImage(player, 0, 0, canvas.width, canvas.height);
-    const data = tempContext.getImageData(0,0,canvas.width,canvas.height).data
-    console.log("from js", data.length)
+    data = tempContext.getImageData(0,0,canvas.width,canvas.height).data
+    // console.log("from js", data.length)
     // pass rgba data to webassembly function
     lib.calculate(data);
     // const newData = lib.get();
     //create new Image and draw it to a canvas
-    const newImageData = new ImageData(Uint8ClampedArray.from(data), width, height);
+    newImageData = new ImageData(Uint8ClampedArray.from(data), width, height);
     context.putImageData(newImageData, 0, 0);
 
     window.requestAnimationFrame(animationFrame);

@@ -4,8 +4,6 @@ extern crate wasm_bindgen;
 
 use wasm_bindgen::prelude::*;
 
-// static mut rgba_v: Vec<i32> = Vec::new();
-
 #[wasm_bindgen]
 pub fn calculate(rgba: &mut [i32]) {
   let len: i32 = rgba.len() as i32;
@@ -26,10 +24,4 @@ pub fn calculate(rgba: &mut [i32]) {
         rgba[(x+2) as usize] = average;
     }
   }
-  // Vec::from(rgba)
 }
-
-// #[wasm_bindgen]
-// pub extern fn get() -> &[i32] {
-//   unsafe { &rgba_v[..] }
-// }
